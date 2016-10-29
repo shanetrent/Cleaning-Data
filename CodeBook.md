@@ -141,3 +141,52 @@ tBodyGyroMean
 tBodyGyroJerkMean
 
 The complete list of variables of each feature vector is available in 'features.txt'
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Uploaded the following libraries to work with my code.
+library(dplyr)
+library(tidyr)
+
+
+Created the following tables associated with the text files for data.
+
+ActTest  ("X_test.txt")
+DataTest ("Y_test.txt")
+SubTest  ("subject_test.txt")
+ActTrain ("X_train.txt")
+DataTrain("Y_train.txt")
+SubTrain ("subject_train.txt")
+Act 	 ("activity_labels.txt")
+Feat 	 ("features.txt")
+FeatParse
+*FeatStdMean Final table Steps 1-4
+**AllData2	 Final table Step 5
+
+Combined the tables into new tables.
+
+SubAll (SubTrain, SubTest)
+ActAll (ActTrain, ActTest)
+DataAll(DataTrain, DataTest)
+AllSubAct (SubAll, DataAll)
+AllData (AllSubact, ActAll)
+
+Updated Tables with readable column names.
+
+(Feat) 		("FeatNum","FeatName")
+(Act)		("ActNum","ActName")
+(DataAll)	("ActivityType")
+(SubAll) 	("Subject")
+(ActAll) 	Feat$FeatName
+("std()", 	"Standard Deviation"
+("mean()" 	"Mean"
+("^t"		"Time",
+("^f"	 	"Frequency"
+("Acc"	 	"Accelerometer"
+("Gyro"	 	"Gyroscope"
+("Mag"		"Magnitude"
+("BodyBody" "Body"
+
+
