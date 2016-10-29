@@ -42,5 +42,24 @@ AllData <- cbind(AllSubAct, ActAll)
 #AllData should be Tidy Dataset with readable headers and merged data.
 
 
+#Parsing Features.txt and providing a final dataset with Standard Deviation and Mean.
 
+FeatParse <- grep('mean|std', Feat)
+FeatStdMean <- AllData[,c(1:8,FeatParse + 2)]
 
+#Updating the Column names to replace with readable data.
+
+names(FeatStdMean) <- gsub("std()", "Standard Deviation", names(FeatStdMean))
+names(FeatStdMean) <- gsub("mean()", "Mean", names(FeatStdMean))
+names(FeatStdMean) <- gsub("^t", "Time", names(FeatStdMean))
+names(FeatStdMean) <- gsub("^f", "Frequency", names(FeatStdMean))
+names(FeatStdMean) <- gsub("Acc", "Accelerometer", names(FeatStdMean))
+names(FeatStdMean) <- gsub("Gyro", "Gyroscope", names(FeatStdMean))
+names(FeatStdMean) <- gsub("Mag", "Magnitude", names(FeatStdMean))
+names(FeatStdMean) <- gsub("BodyBody", "Body", names(FeatStdMean))
+
+#FeatStdMean is now the end results for the first table as requested in steps 1-4.
+
+AllData2 <- aggregate(FeatStdMean[, 3:ncol(FeatStdMean)],by=list(Subject = FeatStdMean$Subject, ActivityType = FeatStdMean$ActivityType),mean)
+
+#AllData2 is now the end result to show tidy data for step 5.
